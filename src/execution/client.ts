@@ -32,12 +32,12 @@ export class InjectiveClient {
       exec: {
         action: action,
         msg: actionMsg,
-        // funds: [
-        //   {
-        //     denom: 'inj',
-        //     amount: new BigNumberInBase(1).toWei().toFixed(),
-        //   },
-        // ],
+        funds: [
+          {
+            denom: 'inj',
+            amount: new BigNumberInBase(1).toWei().toFixed(),
+          },
+        ],
       },
     })
     console.dir(msg, {depth: null});
