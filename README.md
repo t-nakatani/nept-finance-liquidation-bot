@@ -1,7 +1,7 @@
 # Injective Lquidator Bot
 
 * https://github.com/InjectiveLabs/injective-ts-examples を元に作成
-* neptune fainanceの仕様に準拠(https://docs.nept.finance/developers/overview)
+* neptune financeの仕様に準拠(https://docs.nept.finance/developers/overview)
 
 下記4段構成
 
