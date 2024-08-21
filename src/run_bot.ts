@@ -45,6 +45,8 @@ async function main() {
       const debtAmount = debtTokenInfo[1].shares;
 
       const min_discount = '0';
+
+      console.log(`${targetAccount.usd_value} USD`)
       // === ここまで仮コード === //
 
     const actionMsg = liquidateEngine.createLiquidateOperation(

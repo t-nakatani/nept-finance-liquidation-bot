@@ -28,4 +28,5 @@ export interface LiquidationChance {
   collaterals: [PoolAccountKey, PoolAccount][];
   debts: [PoolAccountKey, PoolAccount][];
   ratio: number;
+  usd_value: number;
 }

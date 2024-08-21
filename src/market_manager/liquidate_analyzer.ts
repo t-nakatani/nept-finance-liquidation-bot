@@ -27,7 +27,8 @@ export class LiquidationAnalyzer {
                     address: address,
                     collaterals: collaterals,
                     debts: debts,
-                    ratio: debtsSummary / collateralSummary
+                    ratio: debtsSummary / collateralSummary,
+                    usd_value: debtsSummary
                 });
             }
             // else {
