@@ -22,3 +22,10 @@ export interface Account {
   debt_pool_accounts: [PoolAccountKey, PoolAccount][];
   collateral_pool_accounts: [PoolAccountKey, PoolAccount][];
 }
+
+export interface LiquidationChance {
+  address: string;
+  collaterals: [PoolAccountKey, PoolAccount][];
+  debts: [PoolAccountKey, PoolAccount][];
+  ratio: number;
+}

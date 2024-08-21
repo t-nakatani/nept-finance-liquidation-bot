@@ -1,6 +1,6 @@
 import { Uint256, Decimal256, NeptuneMap, AssetInfo, AssetMap, LiquidationAmounts, LiquidationOperation, ExecuteMsg } from "./types"
 
-export class LiquidatorEngine {
+export class LiquidateEngine {
     createLiquidateOperation(
         target_account_addr: string,
         account_index: number,

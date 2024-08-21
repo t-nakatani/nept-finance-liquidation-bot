@@ -1,5 +1,5 @@
 import { toBase64, fromBase64 } from "@injectivelabs/sdk-ts"
-import { chainGrpcWasmApi } from "./services"
+import { chainGrpcWasmApi } from "../market_manager/services"
 import {Account, PoolAccount} from "./types"
 
 async function query() {

@@ -1,6 +1,6 @@
-import { PoolAccount, AccountTuple, PoolAccountKey } from "./types"
-import { query } from "./client"
-import { priceOracleContract } from "./constants/address"
+import { PoolAccount, AccountTuple, PoolAccountKey } from "../market_manager/types"
+import { query } from "../market_manager/client"
+import { priceOracleContract } from "../constants/address"
 
 export async function queryAllPrices(contractAddress: string, msg) {
     const data = await query(contractAddress, msg)
