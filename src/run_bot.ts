@@ -29,6 +29,8 @@ async function main() {
     console.log(tx)
     try {
       const targetAccounts = await marketManager.fetchAccounts(firstAccount);
+
+      // === ここから仮コード === //
       const targetAccount = targetAccounts[0];
 
       const target_account_address = targetAccount.address;
@@ -43,24 +45,15 @@ async function main() {
       const debtAmount = debtTokenInfo[1].shares;
 
       const min_discount = '0';
-
-      console.log(
-        target_account_address,
-        account_index,
-        collateralToken,
-        collateralAmount,
-        debtToken,
-        debtAmount,
-        min_discount
-      )
+      // === ここまで仮コード === //
 
     const actionMsg = liquidateEngine.createLiquidateOperation(
         target_account_address,
         account_index,
-        collateralToken,
-        collateralAmount,
         debtToken,
         debtAmount,
+        collateralToken,
+        collateralAmount,
         min_discount
     );
 
