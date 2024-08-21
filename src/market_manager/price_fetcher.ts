@@ -1,6 +1,5 @@
 import { InjectiveQueryClient } from "./client";
 import { priceOracleContract } from "../constants/address";
-import { PriceInfo } from "./types";
 
 export class PriceFetcher {
     private client: InjectiveQueryClient;
@@ -25,7 +24,7 @@ export class PriceFetcher {
                 ? tokenPricePair[0].native_token.denom 
                 : tokenPricePair[0].token.contract_addr;
 
-            const priceInfo: PriceInfo = tokenPricePair[1];
+            const priceInfo = tokenPricePair[1];
             const value = { price: parseFloat(priceInfo.price), decimals: priceInfo.decimals };
             priceTable[key] = value;
         });
