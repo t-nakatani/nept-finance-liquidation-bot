@@ -16,6 +16,8 @@ function getMarketInfoExample() {
     return [target_account_addr, account_index, tokenIn, amountIn, token_out, amount_out, min_discount]
 }
 
+const firstAccount = ''
+
 async function main() {
     const txListener = new TxListener();
     const marketManager = new MarketManager();
@@ -26,31 +28,43 @@ async function main() {
     console.log('============== Found Tx ==============')
     console.log(tx)
     try {
-      const firstAccount = ''
-      const targetAccountsData = await marketManager.fetchAccounts(firstAccount);
-      console.log(targetAccountsData)
+      const targetAccounts = await marketManager.fetchAccounts(firstAccount);
+      const targetAccount = targetAccounts[0];
 
-      const [
-        target_account_addr,
+      const target_account_address = targetAccount.address;
+      const account_index = 0;
+
+      const collateralTokenInfo: AssetInfo = targetAccount.collaterals[0];
+      const collateralToken = collateralTokenInfo[0];
+      const collateralAmount = collateralTokenInfo[1].shares;
+
+      const debtTokenInfo: AssetInfo = targetAccount.debts[0];
+      const debtToken = debtTokenInfo[0];
+      const debtAmount = debtTokenInfo[1].shares;
+
+      const min_discount = '0';
+
+      console.log(
+        target_account_address,
         account_index,
-        tokenIn,
-        amountIn,
-        token_out,
-        amount_out,
+        collateralToken,
+        collateralAmount,
+        debtToken,
+        debtAmount,
         min_discount
-    ] = getMarketInfoExample();
+      )
 
     const actionMsg = liquidateEngine.createLiquidateOperation(
-        target_account_addr,
+        target_account_address,
         account_index,
-        tokenIn,
-        amountIn,
-        token_out,
-        amount_out,
+        collateralToken,
+        collateralAmount,
+        debtToken,
+        debtAmount,
         min_discount
     );
 
-    await txGenerator.generateTx(tokenIn, amountIn, marketContract, 'liquidate', actionMsg);
+    await txGenerator.generateTx(debtToken, debtAmount, marketContract, 'liquidate', actionMsg);
 
     } catch (error) {
       console.error("Error in liquidation process:", error);
