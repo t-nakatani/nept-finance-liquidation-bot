@@ -1,6 +1,24 @@
 import { Uint256, Decimal256, NeptuneMap, AssetInfo, AssetMap, LiquidationAmounts, LiquidationOperation, ExecuteMsg } from "./types"
 
 export class LiquidateEngine {
+    searchBestAssets(
+        collaterals: AssetInfo[],
+        debts: AssetInfo[]
+    ) {
+        // 仮簡易実装
+        const collateralTokenInfo: AssetInfo = collaterals[0];
+        const collateralToken = collateralTokenInfo[0];
+        const collateralAmount = collateralTokenInfo[1].shares;
+  
+        const debtTokenInfo: AssetInfo = debts[0];
+        const debtToken = debtTokenInfo[0];
+        const debtAmount = debtTokenInfo[1].shares;
+
+        const offerAsset = {token: debtToken, amount: debtAmount}
+        const askAsset = {token: collateralToken, amount: collateralAmount}
+        return [offerAsset, askAsset]
+    }
+
     createLiquidateOperation(
         target_account_addr: string,
         account_index: number,
