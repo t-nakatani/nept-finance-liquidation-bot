@@ -31,35 +31,29 @@ async function main() {
       const targetAccounts = await marketManager.fetchAccounts(firstAccount);
 
       // === ここから仮コード === //
-      const targetAccount = targetAccounts[0];
-
-      const target_account_address = targetAccount.address;
+      const targetAccount = targetAccounts[1];
       const account_index = 0;
-
-      const collateralTokenInfo: AssetInfo = targetAccount.collaterals[0];
-      const collateralToken = collateralTokenInfo[0];
-      const collateralAmount = collateralTokenInfo[1].shares;
-
-      const debtTokenInfo: AssetInfo = targetAccount.debts[0];
-      const debtToken = debtTokenInfo[0];
-      const debtAmount = debtTokenInfo[1].shares;
+      const target_account_address = targetAccount.address;
+      const [offerAsset, askAsset] = liquidateEngine.searchBestAssets(targetAccount.collaterals, targetAccount.debts);
 
       const min_discount = '0';
-
       console.log(`${targetAccount.usd_value} USD`)
+
+      const dummyOfferAmount = '1000000'
+      const dummyAskAmount = '1000000'
       // === ここまで仮コード === //
 
     const actionMsg = liquidateEngine.createLiquidateOperation(
         target_account_address,
         account_index,
-        debtToken,
-        debtAmount,
-        collateralToken,
-        collateralAmount,
+        offerAsset.token,
+        dummyOfferAmount,
+        askAsset.token,
+        dummyAskAmount,
         min_discount
     );
 
-    await txGenerator.generateTx(debtToken, debtAmount, marketContract, 'liquidate', actionMsg);
+    await txGenerator.generateTx(offerAsset.token, dummyOfferAmount, marketContract, 'liquidate', actionMsg);
 
     } catch (error) {
       console.error("Error in liquidation process:", error);
