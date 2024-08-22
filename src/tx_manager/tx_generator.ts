@@ -19,7 +19,7 @@ export class TxGenerator {
             funds: [
               {
                 denom: tokenIn,
-                amount: new BigNumberInBase(amountIn).toWei().toFixed(),
+                amount: new BigNumberInBase(amountIn).toFixed(),
               },
             ],
           },
